@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+union my_data {
+    int integer;
+    float floating_point;
+    char string[50];
+};
+
+int main() {
+    union my_data data;
+    char input[50];
+    int is_integer = 1;
+    int is_floating_point = 1;
+
+    printf("Enter the value: ");
+    scanf("%s", input);
+
+    for (int i = 0; i < strlen(input); i++) {
+        if (input[i] < '0' || input[i] > '9') {
+            is_integer = 0;
+            break;
+        }
+    }
+
+    
+    for (int i = 0; i < strlen(input); i++) {
+        if (input[i] == '.') {
+            is_floating_point = 1;
+            break;
+        }
+        if (input[i] < '0' || input[i] > '9') {
+            is_floating_point = 0;
+            break;
+        }
+    }
+
+    if (is_integer) {
+        data.integer = atoi(input);
+        printf("You entered an integer: %d\n", data.integer);
+    } else if (is_floating_point) {
+        data.floating_point = atof(input);
+        printf("You entered a floating-point number: %f\n", data.floating_point);
+    } else {
+        strcpy(data.string, input);
+        printf("You entered a string: %s\n", data.string);
+    }
