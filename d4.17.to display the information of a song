@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+struct song {
+    char title[100];
+    char artist[100];
+    char album[100];
+    int year;
+};
+
+void print_song(struct song s) {
+    printf("title: %s, Artist: %s, Album: %s, Year: %d\n", s.title, s.artist, s.album, s.year);
+}
+
+int main() {
+    struct song s1 = {"bohemian Rhapsody", "Queen", "A Night at the Opera", 1975};
+    struct song s2 = {"stairway to Heaven", "Led Zeppelin", "Led Zeppelin IV", 1971};
+    struct song s3 = {"hotel California", "Eagles", "Hotel California", 1976};
+
+    print_song(s1);
+    print_song(s2);
+    print_song(s3);
+
+    return 0;
+}
