@@ -1,0 +1,29 @@
+#include <string.h>
+
+union MyUnion {
+  int myInt;
+  char myString[100];
+};
+
+int main() {
+  union myUnion u;
+
+  printf("Enter thevalue: ");
+  char input[100];
+  fgets(input, sizeof(input), stdin);
+
+ 
+  char *endptr;
+  int intValue = strtol(input, &endptr, 10);
+  if (*endptr == '\n' || *endptr == '\0') {
+    
+    u.myInt = intValue;
+    printf("Input is an integer: %d\n", u.myInt);
+  } else {
+    
+    strncpy(u.myString, input, sizeof(u.myString));
+    printf("Input is a string: %s\n", u.myString);
+  }
+
+  return 0;
+}
