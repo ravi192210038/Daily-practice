@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <string.h>
+
+struct employee {
+    char name[50];
+    int age;
+    float salary;
+    char department[50];
+};
+
+void print_sales_employees(struct employee employees[], int num_employees) {
+    printf("sales Employees:\n");
+    for (int i = 0; i < num_employees; i++) {
+        if (strcmp(employees[i].department, "Sales") == 0 && employees[i].salary > 50000.0) {
+            printf("Name: %s\n", employees[i].name);
+            printf("Age: %d\n", employees[i].age);
+            printf("Salary: $%.2f\n", employees[i].salary);
+            printf("Department: %s\n\n", employees[i].department);
+        }
+    }
+}
+
+int main() {
+    struct employee e1 = {" Smith", 35, 60000.0, "Sales"};
+    struct employee e2 = {"Jane Doe", 42, 45000.0, "Marketing"};
+    struct employee e3 = {"Bob Johnson", 28, 52000.0, "Sales"};
+    struct employee e4 = {"Sarah Lee", 50, 70000.0, "Sales"};
+    struct employee employees[4] = {e1, e2, e3, e4};
+
+    print_sales_employees(employees, 4);
+
+    return 0;
+}
