@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+
+struct employee {
+    char name[50];
+    int age;
+    float salary;
+    char department[50];
+};
+
+void display_sales_employees(struct employee employees[], int size) {
+    int i;
+    printf("Sales Employees earning more than $50,000 per year:\n");
+    for (i = 0; i < size; i++) {
+        if (strcmp(employees[i].department, "Sales") == 0 && employees[i].salary > 50000) {
+            printf("%s (%d) - $%.2f\n", employees[i].name, employees[i].age, employees[i].salary);
+        }
+    }
+}
+
+int main() {
+    struct employee employees[] = {
+        {"John Smith", 30, 60000.00, "Sales"},
+        {"Jane Doe", 25, 45000.00, "Marketing"},
+        {"Bob Johnson", 40, 70000.00, "Sales"},
+        {"Sarah Lee", 35, 55000.00, "Sales"},
+        {"Tom Smith", 45, 90000.00, "Engineering"}
+    };
+    int size = sizeof(employees) / sizeof(struct employee);
+
+    display_sales_employees(employees, size);
+
+    return 0;
+}
