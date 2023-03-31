@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+struct rectangle {
+    int length;
+    int width;
+};
+
+int calculate_area(struct rectangle r) {
+    int area = r.length * r.width;
+    return area;
+}
+
+int main() {
+    struct rectangle r1 = { 5, 10 };
+    int area = calculate_area(r1);
+    printf("Area of rectangle with length %d and width %d is %d\n", r1.length, r1.width, area);
+
+    return 0;
+}
