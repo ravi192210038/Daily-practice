@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+union myUnion {
+    int i;
+    float f;
+};
+
+int main() {
+    union myunion u;
+
+    u.i = 10;
+    printf("Value of u.i: %d\n", u.i);
+
+    u.f = 3.14;
+    printf("Value of u.f: %f\n", u.f);
+
+    return 0;
+}
+
