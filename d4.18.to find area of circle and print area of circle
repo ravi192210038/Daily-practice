@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+struct point {
+    int x;
+    int y;
+};
+
+struct circle {
+    float radius;
+    struct point center;
+};
+
+float area_of_circle(struct circle c) {
+    float area = 3.14159 * c.radius * c.radius;
+    return area;
+}
+
+int main() {
+    struct circle c1 = {5.0, {0, 0}};
+    struct circle c2 = {3.5, {2, 3}};
+    struct circle c3 = {7.2, {10, -5}};
+
+    printf("area of Circle 1: %f\n", area_of_circle(c1));
+    printf("area of Circle 2: %f\n", area_of_circle(c2));
+    printf("area of Circle 3: %f\n", area_of_circle(c3));
+
+    return 0;
+}
