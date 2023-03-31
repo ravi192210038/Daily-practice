@@ -1,0 +1,50 @@
+#include <stdio.h>
+
+union value {
+    float value_float;
+    int value_int;
+};
+
+enum unit {
+    INCHES,
+    FEET,
+    YARDS,
+    METERS
+};
+
+struct measurement {
+    union value value;
+    enum unit unit;
+};
+
+int main() {
+    struct measurement m;
+
+    printf("Enter the  value: ");
+    scanf("%f", &m.value.value_float);
+
+    printf("Enter unit (0 for inches, 1 for feet, 2 for yards, 3 for meters): ");
+    scanf("%d", &m.unit);
+
+    switch (m.unit) {
+        case FEET:
+            m.value.value_int = m.value.value_float * 12;
+            break;
+        case YARDS:
+            m.value.value_int = m.value.value_float * 36;
+            break;
+        case METERS:
+            m.value.value_int = m.value.value_float * 39.37;
+            break;
+        default:
+            m.value.value_int = m.value.value_float;
+            break;
+    }
+
+    printf("Value in inches: %d\n", m.value.value_int);
+    printf("Value in feet: %.2f\n", m.value.value_float / 12.0);
+    printf("Value in yards: %.2f\n", m.value.value_float / 36.0);
+    printf("Value in meters: %.2f\n", m.value.value_float / 39.37);
+
+    return 0;
+}
