@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+
+typedef struct {
+    char type[20];
+    union {
+        float f[2];
+        int i[2];
+    } dimensions;
+} Shape;
+
+float rectangleArea(int width, int height) {
+    return width * height;
+}
+
+float circleArea(float radius) {
+    return M_PI * radius * radius;
+}
+
+float triangleArea(float base, float height) {
+    return 0.5 * base * height;
+}
+
+int main() {
+    Shape shape;
+    float area;
+
+    printf("enter shape type (rectangle, circle, or triangle): ");
+    scanf("%s", shape.type);
+
+    if (strcmp(shape.type, "rectangle") == 0) {
+
+        printf("enter width and height of rectangle: ");
+        scanf("%d %d", &shape.dimensions.i[0], &shape.dimensions.i[1]);
+
+        area = rectangleArea(shape.dimensions.i[0], shape.dimensions.i[1]);
+    } else if (strcmp(shape.type, "circle") == 0) {
+
+        printf("enter radius of circle: ");
+        scanf("%f", &shape.dimensions.f[0]);
+
+        area = circleArea(shape.dimensions.f[0]);
+    } else if (strcmp(shape.type, "triangle") == 0) {
+
+        printf("enter base and height of triangle: ");
+        scanf("%f %f", &shape.dimensions.f[0], &shape.dimensions.f[1]);
+
+        area = triangleArea(shape.dimensions.f[0], shape.dimensions.f[1]);
+    } else {
+        printf("Invalid shape type.\n");
+        exit(1);
+    }
+
+    printf("Area of %s is %.2f\n", shape.type, area);
+
+    return 0;
+}
