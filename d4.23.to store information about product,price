@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+struct Product {
+    char name[50];
+    union {
+        float f_price;
+        int i_price;
+    } price;
+    int quantity;
+};
+
+int main() {
+    struct Product product;
+    float price;
+    int quantity;
+
+    printf("enter the product name: ");
+    fgets(product.name, 50, stdin);
+    printf("enter the product price: ");
+    scanf("%f", &price);
+    product.price.f_price = price;
+    printf("enter the product quantity: ");
+    scanf("%d", &quantity);
+    product.quantity = quantity;
+
+    float total_cost = product.price.f_price * product.quantity;
+    printf("Total cost: %.2f", total_cost);
+
+    return 0;
+}
