@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+typedef union {
+    float dollars;
+    int cents;
+} Balance;
+
+int main() {
+    char name[100];
+    Balance balance;
+    int option;
+
+    printf("Enter your name: ");
+    scanf("%s", name);
+
+    printf("Enter your initial balance (in dollars): ");
+    scanf("%f", &balance.dollars);
+
+    while (1) {
+        printf("\n%s's balance is $%.2f\n", name, balance.dollars);
+        printf("Enter 1 to deposit, 2 to withdraw, 3 to check balance, or 4 to exit: ");
+        scanf("%d", &option);
+
+        switch (option) {
+            case 1:
+                printf("Enter deposit the amount (in dollars): ");
+                float deposit;
+                scanf("%f", &deposit);
+                balance.dollars += deposit;
+                break;
+            case 2:
+                printf("Enter withdrawal amount (in dollars): ");
+                float withdrawal;
+                scanf("%f", &withdrawal);
+                if (withdrawal > balance.dollars) {
+                    printf("Insufficient funds!\n");
+                } else {
+                    balance.dollars -= withdrawal;
+                }
+                break;
+            case 3:
+                printf("balance is $%.2f\n", balance.dollars);
+                break;
+            case 4:
+                printf("Goodbye!\n");
+                return 0;
+            default:
+                printf("Invalid option!\n");
+                break;
+        }
+    }
+}
